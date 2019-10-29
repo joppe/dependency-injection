@@ -1,6 +1,7 @@
-import { Definition } from './Definition';
-import { Dictionary } from './types/Dictionary';
-import { Factory } from './types/Factory';
+import * as types from '@apestaartje/types';
+
+import { Definition } from '../definition/Definition';
+import { Factory } from '../definition/Factory';
 
 /**
  * The DI container
@@ -8,13 +9,9 @@ import { Factory } from './types/Factory';
 
 export class Container {
     // tslint:disable-next-line no-any
-    private readonly _registry: Dictionary<Definition<any>>;
+    private readonly _registry: types.Dictionary<Definition<any>> = {};
 
-    constructor() {
-        this._registry = {};
-    }
-
-    public register<T>(identifier: string, factory: Factory<T>, requiredDependencies?: Array<string>): void {
+    public register<T>(identifier: string, factory: Factory<T>, requiredDependencies?: string[]): void {
         this._registry[identifier] = new Definition<T>(identifier, factory, requiredDependencies);
     }
 
@@ -36,7 +33,7 @@ export class Container {
 
     public get<T>(identifier: string): Definition<T> {
         if (!this.has(identifier)) {
-            throw new Error(`Container,resolve, unknown identifier: "${identifier}"`);
+            throw new Error(`Container.resolve, unknown identifier: "${identifier}"`);
         }
 
         return this._registry[identifier];

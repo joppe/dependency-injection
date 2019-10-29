@@ -1,4 +1,4 @@
-import { Container as DIContainer } from '../../src/Container';
+import { Container as DIContainer } from '@apestaartje/dependency-injection/container/Container';
 
 describe('Container', (): void => {
     it('register a dependency', (): void => {
@@ -8,7 +8,7 @@ describe('Container', (): void => {
             'a',
             () => {
                 return 12;
-            }
+            },
         );
 
         expect(container.has('a')).toEqual(true);
@@ -21,7 +21,7 @@ describe('Container', (): void => {
             'a',
             () => {
                 return 12;
-            }
+            },
         );
 
         expect(container.has('a')).toEqual(true);
@@ -35,7 +35,7 @@ describe('Container', (): void => {
             'a',
             () => {
                 return 12;
-            }
+            },
         );
 
         expect(container.resolve('a')).toEqual(12);
@@ -48,20 +48,20 @@ describe('Container', (): void => {
             'a',
             () => {
                 return 12;
-            }
+            },
         );
         container.register<number>(
             'b',
             () => {
                 return 45;
-            }
+            },
         );
         container.register<number>(
             'add',
             // tslint:disable-next-line typedef
             (a, b) => {
                 return a + b;
-            }
+            },
         );
 
         expect(container.resolve('add')).toEqual(57);

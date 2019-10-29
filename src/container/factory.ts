@@ -5,13 +5,11 @@ import { Container } from './Container';
  */
 
 export const factory: () => Container = ((): () => Container => {
-    let container: Container;
-    let isInvoked: boolean = false;
+    let container: Container | undefined;
 
     return (): Container => {
-        if (!isInvoked) {
+        if (container === undefined) {
             container = new Container();
-            isInvoked = true;
         }
 
         return container;

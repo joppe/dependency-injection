@@ -1,22 +1,22 @@
-import { args } from '@apestaartje/function';
+import * as func from '@apestaartje/function';
+import * as types from '@apestaartje/types';
 
-import { Dictionary } from './types/Dictionary';
-import { Factory } from './types/Factory';
+import { Factory } from './Factory';
 
 /**
  * A dependency definition.
  */
 
 export class Definition<T> {
-    private readonly _requiredDependencies: Array<string>;
+    private readonly _requiredDependencies: string[];
     private readonly _factory: Factory<T>;
     private readonly _identifier: string;
     private _isInvoked: boolean = false;
     // tslint:disable-next-line no-any
-    private readonly _dependencies: Dictionary<any> = {};
+    private readonly _dependencies: types.Dictionary<any> = {};
     private _result: T;
 
-    get requiredDependencies(): Array<string> {
+    get requiredDependencies(): string[] {
         return this._requiredDependencies;
     }
 
@@ -24,10 +24,10 @@ export class Definition<T> {
         return this._isInvoked;
     }
 
-    constructor(identifier: string, factory: Factory<T>, requiredDependencies?: Array<string>) {
+    constructor(identifier: string, factory: Factory<T>, requiredDependencies?: string[]) {
         this._identifier = identifier;
         this._factory = factory;
-        this._requiredDependencies = requiredDependencies === undefined ? args(this._factory) : requiredDependencies;
+        this._requiredDependencies = requiredDependencies === undefined ? func.args(this._factory) : requiredDependencies;
     }
 
     // tslint:disable-next-line no-any
@@ -45,14 +45,14 @@ export class Definition<T> {
     }
 
     // tslint:disable-next-line no-any
-    public getDependencies(): Array<any> {
+    public getDependencies(): any[] {
         return this._requiredDependencies
             .reduce(
                 // tslint:disable-next-line no-any
-                (dependencies: Array<any>, identifier: string) => {
+                (dependencies: any[], identifier: string) => {
                     return dependencies.concat(this.getDependency(identifier));
                 },
-                []
+                [],
             );
     }
 

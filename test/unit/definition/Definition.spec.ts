@@ -1,4 +1,4 @@
-import { Definition } from '../../src/Definition';
+import { Definition } from '@apestaartje/dependency-injection/definition/Definition';
 
 describe('Definition', (): void => {
     it('get a list of the argument names of the wrapped function', (): void => {
@@ -7,7 +7,7 @@ describe('Definition', (): void => {
             // tslint:disable-next-line typedef
             (a, b) => {
                 return a + b;
-            }
+            },
         );
 
         expect(d.requiredDependencies).toEqual(['a', 'b']);
@@ -19,7 +19,7 @@ describe('Definition', (): void => {
             // tslint:disable-next-line typedef
             () => {
                 return 'foo';
-            }
+            },
         );
 
         expect(d.requiredDependencies).toEqual([]);
@@ -32,7 +32,7 @@ describe('Definition', (): void => {
             // tslint:disable-next-line typedef
             (a, b) => {
                 return a + b;
-            }
+            },
         );
 
         d.setDependency('a', 100);
@@ -46,7 +46,7 @@ describe('Definition', (): void => {
             // tslint:disable-next-line typedef
             (a, b) => {
                 return a + b;
-            }
+            },
         );
 
         expect((): void => {
@@ -60,7 +60,7 @@ describe('Definition', (): void => {
             // tslint:disable-next-line typedef
             (a, b) => {
                 return a + b;
-            }
+            },
         );
 
         expect(d.isDependencyDefined('a')).toBe(false);
@@ -76,7 +76,7 @@ describe('Definition', (): void => {
             // tslint:disable-next-line typedef
             (a, b) => {
                 return a + b;
-            }
+            },
         );
 
         d.setDependency('a', 2);
@@ -93,9 +93,9 @@ describe('Definition', (): void => {
             // tslint:disable-next-line typedef
             (a, b) => {
                 return {
-                    result: a + b
+                    result: a + b,
                 };
-            }
+            },
         );
 
         d.setDependency('a', 2);

@@ -1,13 +1,9 @@
-/**
- * This file exports all functions from this lib
- */
-
-import * as decorator from './decorator/index';
-
-export * from './Container';
-export * from './Definition';
-export * from './factory';
+import * as container from './container';
+import * as decorator from './decorator';
+import * as definition from './definition';
 
 export {
-    decorator
+    container,
+    decorator,
+    definition,
 };
