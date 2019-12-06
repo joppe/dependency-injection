@@ -11,11 +11,11 @@ const CONSTRUCTOR_NAME: string = 'name';
  */
 
 // tslint:disable-next-line function-name no-any
-export function Inject<T extends types.Constructor<any>>(): (target: T) => T {
+export function Inject<T extends types.Constructor<any>>(name?: string): (target: T) => T {
     return (target: T): T => {
         const di: Container = factory();
         // tslint:disable-next-line no-unsafe-any
-        const identifier: string = target[CONSTRUCTOR_NAME];
+        const identifier: string = name === undefined ? target[CONSTRUCTOR_NAME] : name;
         const requiredDependencies: string[] = func.args(target);
 
         di.register(
