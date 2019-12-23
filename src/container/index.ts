@@ -1,2 +1,2 @@
 export * from './Container';
-export * from './factory';
+export * from './getContainer';

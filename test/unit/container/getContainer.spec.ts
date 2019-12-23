@@ -1,10 +1,10 @@
 import { Container } from '@apestaartje/dependency-injection/container/Container';
-import { factory } from '@apestaartje/dependency-injection/container/factory';
+import { getContainer } from '@apestaartje/dependency-injection/container/getContainer';
 
-describe('dependency injection factory', (): void => {
+describe('getContainer', (): void => {
     it('create only once a container', (): void => {
-        const a: Container = factory();
-        const b: Container = factory();
+        const a: Container = getContainer();
+        const b: Container = getContainer();
 
         expect(a).toBeDefined();
         expect(b).toBeDefined();

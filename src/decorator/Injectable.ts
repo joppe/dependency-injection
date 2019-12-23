@@ -2,7 +2,7 @@ import * as func from '@apestaartje/function';
 import * as types from '@apestaartje/types';
 
 import { Container } from '../container/Container';
-import { factory } from '../container/factory';
+import { getContainer } from '../container/getContainer';
 
 const CONSTRUCTOR_NAME: string = 'name';
 
@@ -11,9 +11,9 @@ const CONSTRUCTOR_NAME: string = 'name';
  */
 
 // tslint:disable-next-line function-name no-any
-export function Inject<T extends types.Constructor<any>>(name?: string): (target: T) => T {
+export function Injectable<T extends types.Constructor<any>>(name?: string): (target: T) => T {
     return (target: T): T => {
-        const di: Container = factory();
+        const di: Container = getContainer();
         // tslint:disable-next-line no-unsafe-any
         const identifier: string = name === undefined ? target[CONSTRUCTOR_NAME] : name;
         const requiredDependencies: string[] = func.args(target);

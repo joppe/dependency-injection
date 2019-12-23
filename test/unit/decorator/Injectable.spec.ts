@@ -1,10 +1,10 @@
 import { Container as DIContainer } from '@apestaartje/dependency-injection/container/Container';
-import { factory } from '@apestaartje/dependency-injection/container/factory';
-import { Inject } from '@apestaartje/dependency-injection/decorator/Inject';
+import { getContainer } from '@apestaartje/dependency-injection/container/getContainer';
+import { Injectable } from '@apestaartje/dependency-injection/decorator/Injectable';
 
-describe('Inject', (): void => {
+describe('Injectable', (): void => {
     it('resolve value from di container', (): void => {
-        const di: DIContainer = factory();
+        const di: DIContainer = getContainer();
 
         di.register<number>(
             'a',
@@ -13,7 +13,7 @@ describe('Inject', (): void => {
             },
         );
 
-        @Inject()
+        @Injectable()
         class Adder {
             private readonly _a: number;
 

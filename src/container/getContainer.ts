@@ -4,7 +4,7 @@ import { Container } from './Container';
  * Factory function to create (and cache) dependencies.
  */
 
-export const factory: () => Container = ((): () => Container => {
+export const getContainer: () => Container = ((): () => Container => {
     let container: Container | undefined;
 
     return (): Container => {
