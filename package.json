@@ -8,6 +8,7 @@
     "lint": "tslint --config ./tslint.json --project tsconfig.json",
     "prepublishOnly": "npm run build",
     "test": "jest --coverage",
+    "test:debug": "node --inspect-brk ./node_modules/.bin/jest --watch --runInBan",
     "test:watch": "jest --watch"
   },
   "main": "dist/index",

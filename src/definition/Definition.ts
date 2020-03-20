@@ -20,8 +20,6 @@ export class Definition<T> {
     constructor(identifier: string, factory: Factory<T>, requiredDependencies?: string[]) {
         this._identifier = identifier;
         this._factory = factory;
-        console.log('??');
-        console.log(Reflect.metadata('design:paramtypes', factory));
         this._requiredDependencies = requiredDependencies ?? func.args(this._factory);
     }
 
