@@ -44,6 +44,8 @@
     "dist"
   ],
   "dependencies": {
-    "@apestaartje/function": "^1.2.1"
+    "@apestaartje/function": "^1.2.1",
+    "reflect-metadata": "^0.1.13",
+    "ts-jest": "^25.2.1"
   }
 }

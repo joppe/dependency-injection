@@ -6,7 +6,7 @@ describe('Container', (): void => {
 
         container.register<number>(
             'a',
-            () => {
+            (): number => {
                 return 12;
             },
         );
@@ -19,7 +19,7 @@ describe('Container', (): void => {
 
         container.register<number>(
             'a',
-            () => {
+            (): number => {
                 return 12;
             },
         );
@@ -33,7 +33,7 @@ describe('Container', (): void => {
 
         container.register<number>(
             'a',
-            () => {
+            (): number => {
                 return 12;
             },
         );
@@ -46,20 +46,20 @@ describe('Container', (): void => {
 
         container.register<number>(
             'a',
-            () => {
+            (): number => {
                 return 12;
             },
         );
         container.register<number>(
             'b',
-            () => {
+            (): number => {
                 return 45;
             },
         );
         container.register<number>(
             'add',
             // tslint:disable-next-line typedef
-            (a, b) => {
+            (a: number, b: number): number => {
                 return a + b;
             },
         );

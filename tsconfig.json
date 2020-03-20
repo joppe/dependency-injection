@@ -3,17 +3,21 @@
     "baseUrl": "./",
     "declaration": true,
     "experimentalDecorators": true,
+    "inlineSourceMap": true,
     "module": "es6",
     "moduleResolution": "node",
     "outDir": "dist",
     "removeComments": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "strictBindCallApply": true,
     "strictNullChecks": true,
     "target": "es6"
   },
   "exclude": [
     "dist"
+  ],
+  "files": [
+    "test/unit/**/*.ts"
   ],
   "include": [
     "src/**/*.ts"

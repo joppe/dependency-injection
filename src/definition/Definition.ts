@@ -1,6 +1,7 @@
 import * as func from '@apestaartje/function';
 import * as types from '@apestaartje/types';
 
+import 'reflect-metadata';
 import { Factory } from './Factory';
 
 /**
@@ -16,18 +17,20 @@ export class Definition<T> {
     private readonly _dependencies: types.Dictionary<any> = {};
     private _result: T;
 
-    get requiredDependencies(): string[] {
-        return this._requiredDependencies;
-    }
-
-    get isInvoked(): boolean {
-        return this._isInvoked;
-    }
-
     constructor(identifier: string, factory: Factory<T>, requiredDependencies?: string[]) {
         this._identifier = identifier;
         this._factory = factory;
-        this._requiredDependencies = requiredDependencies === undefined ? func.args(this._factory) : requiredDependencies;
+        console.log('??');
+        console.log(Reflect.metadata('design:paramtypes', factory));
+        this._requiredDependencies = requiredDependencies ?? func.args(this._factory);
+    }
+
+    public get requiredDependencies(): string[] {
+        return this._requiredDependencies;
+    }
+
+    public get isInvoked(): boolean {
+        return this._isInvoked;
     }
 
     // tslint:disable-next-line no-any
@@ -49,7 +52,7 @@ export class Definition<T> {
         return this._requiredDependencies
             .reduce(
                 // tslint:disable-next-line no-any
-                (dependencies: any[], identifier: string) => {
+                (dependencies: any[], identifier: string): any[] => {
                     return dependencies.concat(this.getDependency(identifier));
                 },
                 [],
